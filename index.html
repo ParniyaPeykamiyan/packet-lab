@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Packet Lab</title>
+  <meta name="description" content="Send a message by carrier pigeon through a tiny simulated internet, and see how real networks move data.">
+  <meta name="theme-color" content="#f3ead8">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <div class="airmail" aria-hidden="true"></div>
+
+  <header class="bar">
+    <a class="mark" href="./">Packet <em>Lab</em></a>
+    <div class="toggles">
+      <button type="button" class="toggle" id="explainToggle" aria-pressed="false">How it works</button>
+      <button type="button" class="toggle" id="soundToggle" aria-pressed="false">Sound</button>
+    </div>
+  </header>
+
+  <main id="app">
+    <!-- SEND -->
+    <section id="send" class="screen" hidden>
+      <div id="compose">
+        <p class="kicker">Par avion · New letter</p>
+        <h1>Send a message <em>by pigeon.</em></h1>
+        <p class="lede">It is cut into packets and flown across a small internet to your friend.</p>
+        <p class="note">Real networks never send a message whole. They cut it into <b>packets</b>: small pieces that travel separately and are put back together at the other end.</p>
+
+        <form id="sendForm" novalidate>
+          <div class="pair">
+            <label class="field"><span class="label">From</span>
+              <input id="fromName" maxlength="40" autocomplete="given-name" spellcheck="false" placeholder="Your name"></label>
+            <label class="field"><span class="label">To</span>
+              <input id="toName" maxlength="40" autocomplete="off" spellcheck="false" placeholder="Friend’s name"></label>
+          </div>
+          <label class="field"><span class="label">Message <span class="count" id="count">0 / 1000</span></span>
+            <textarea id="message" maxlength="1000" rows="7" placeholder="Write something worth the flight."></textarea></label>
+
+          <div class="lock">
+            <label class="check"><input type="checkbox" id="lockOn"><span class="box" aria-hidden="true"></span><span>Lock with a password</span></label>
+            <label class="field" id="pwField" hidden><span class="label">Password</span>
+              <input id="password" type="password" autocomplete="new-password" maxlength="100"></label>
+          </div>
+
+          <p class="error" id="sendError" role="alert"></p>
+          <button class="btn primary" type="submit">Send by pigeon</button>
+        </form>
+      </div>
+
+      <div id="dispatch" hidden>
+        <p class="kicker" id="dispatchStatus">Par avion</p>
+        <h2 class="quiet" id="dispatchTitle">Cutting your letter into packets</h2>
+        <ol class="packets" id="packetGrid"></ol>
+        <p class="note">Each envelope carries a <b>header</b>, the label on the outside: its number (3/8), who it is from, who it is for, and a <b>checksum</b>, a short code worked out from the contents so the receiver can tell if anything was damaged.</p>
+
+        <div id="senderFlight"></div>
+
+        <div class="linkbox" id="linkBox" hidden>
+          <p class="kicker">The link</p>
+          <input id="linkOut" readonly aria-label="Link to your message">
+          <div class="actions">
+            <button type="button" class="btn primary" id="copyBtn">Copy link</button>
+            <button type="button" class="btn" id="shareBtn" hidden>Share</button>
+          </div>
+          <p class="fine" id="privacyNote"></p>
+          <button type="button" class="btn text" id="newBtn">Write another</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECEIVE -->
+    <section id="receive" class="screen" hidden>
+      <p class="kicker" id="rxStatus">Par avion</p>
+      <h1 id="rxTitle">A letter</h1>
+      <p class="meta" id="rxMeta"></p>
+
+      <div id="rxFlight"></div>
+
+      <div class="letter-frame" id="letterFrame">
+        <article class="letter" id="letter" aria-live="polite">
+          <p class="salute" id="letterTo"></p>
+          <div class="letter-body" id="letterBody"></div>
+          <p class="sign" id="letterFrom"></p>
+          <div class="postmark" id="postmark" hidden></div>
+        </article>
+      </div>
+      <p class="note">Two layers worked together. <b>IP</b> moved each packet hop by hop, with no idea of the whole. <b>TCP</b>, at each end, numbered the packets, checked them, asked again for lost ones and put them back in order.</p>
+
+      <div class="actions end">
+        <button type="button" class="btn" id="replayBtn" hidden>Replay the flight</button>
+        <button type="button" class="btn primary" id="replyBtn" hidden>Reply by pigeon</button>
+      </div>
+    </section>
+
+    <section id="broken" class="screen" hidden>
+      <p class="kicker">Return to sender</p>
+      <h1>This letter <em>got torn.</em></h1>
+      <p class="lede">The link looks incomplete. Ask your friend to copy it again.</p>
+      <a class="btn" href="./">Write a letter</a>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>Par avion · No server · The letter lives in the link</span>
+  </footer>
+  <div class="airmail" aria-hidden="true"></div>
+</body>
+</html>
