@@ -202,10 +202,12 @@ function showLink(letter, url, flight) {
   };
   const share = $("shareBtn");
   share.hidden = !navigator.share;
+  // Message and link go together in `text`: with a separate `url`, WhatsApp on
+  // iPhone keeps only the link. The link sits alone on the last line so chat
+  // apps still detect it and build the preview card.
   share.onclick = () => navigator.share({
     title: "A letter by pigeon",
-    text: shareText(letter, flight),
-    url,
+    text: `${shareText(letter, flight)}\n${url}`,
   }).catch(() => {});
 }
 $("newBtn").addEventListener("click", () => { history.replaceState(null, "", location.pathname); routed = ""; showSend({ clear: true }); });
