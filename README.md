@@ -29,6 +29,7 @@ The fragment holds the names, the send time, a random seed for the flight, and t
 - The flight is **deterministic**: the same seed always gives the same routes, delays and losses. It's timed from the send time (30 to 90 seconds), so if your friend opens the link while pigeons are still flying, they watch them land live. If they open it later, the letter is already delivered and they can replay the flight.
 - **Password lock** (optional): the message is encrypted in the browser with AES-GCM, using a key derived from the password with PBKDF2 (SHA-256, 250,000 rounds). Without the password the letter can't be read.
 - Without a password, **anyone with the link can read the message.**
+- **Sharing** sends a pigeon-post notice ("A pigeon is carrying a letter to you from Ana. It lands in about 2 minutes…") with the link, and the link previews as an airmail envelope.
 
 ## Run it locally
 
@@ -49,6 +50,7 @@ js/codec.js     link encoding, compression, encryption, packets, checksums
 js/flight.js    seeded flight plan: routes, delays, loss, retransmission
 js/view.js      map, pigeons, envelope slots, buffer
 js/sound.js     optional wing flaps and stamp thud (Web Audio)
+assets/og.png   link preview image (rendered from assets/og-source.html)
 ```
 
 ## Accessibility & motion

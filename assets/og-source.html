@@ -1,0 +1,78 @@
+<!doctype html>
+<!-- Source for og.png (1200x630). Render with:
+     msedge --headless --hide-scrollbars --window-size=1200,630 --screenshot=og.png og-source.html -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Packet Lab preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300&family=IBM+Plex+Mono:wght@400;500&display=block" rel="stylesheet">
+<style>
+  :root { --paper:#f3ead8; --ink:#1d1b18; --ink-2:#5d564b; --red:#c32f27; --blue:#1f3f8a; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; background: var(--paper); }
+  .env {
+    position: absolute; inset: 0; padding: 26px;
+    background: repeating-linear-gradient(-45deg,
+      var(--red) 0 34px, var(--paper) 34px 48px, var(--blue) 48px 82px, var(--paper) 82px 96px);
+  }
+  .inner { position: relative; width: 100%; height: 100%; background: var(--paper); }
+  .mono { font-family: "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .14em; }
+  .par { position: absolute; left: 54px; top: 46px; font-size: 22px; color: var(--blue); font-weight: 500; }
+  .par small { display: block; margin-top: 6px; font-size: 15px; color: var(--ink-2); font-weight: 400; }
+  .stamp {
+    position: absolute; right: 54px; top: 40px; width: 132px; height: 160px;
+    border: 2px dashed var(--red); padding: 8px;
+  }
+  .stamp div { width: 100%; height: 100%; border: 1.5px solid var(--blue); display: grid; place-items: center; }
+  .stamp span { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; font-size: 11px; color: var(--ink-2); }
+  .postmark { position: absolute; right: 158px; top: 104px; width: 300px; height: 150px; opacity: .88; }
+  h1 {
+    position: absolute; left: 0; right: 0; top: 232px; text-align: center;
+    font-family: "Fraunces", serif; font-weight: 330; font-size: 92px; line-height: 1.02;
+    letter-spacing: -0.02em; color: var(--ink); font-variation-settings: "opsz" 144;
+  }
+  h1 em { font-weight: 300; }
+  .sub { position: absolute; left: 0; right: 0; top: 448px; text-align: center; font-size: 22px; color: var(--ink-2); }
+  .flight { position: absolute; left: 40px; right: 120px; bottom: 26px; height: 70px; }
+  .bird { position: absolute; right: 64px; bottom: 58px; }
+</style>
+</head>
+<body>
+<div class="env"><div class="inner">
+  <p class="par mono">Par avion<small>By air mail</small></p>
+
+  <svg class="postmark" viewBox="0 0 300 150" aria-hidden="true">
+    <g fill="none" stroke="#c32f27">
+      <circle cx="210" cy="75" r="62" stroke-width="3"/>
+      <circle cx="210" cy="75" r="44" stroke-width="1.5"/>
+      <path stroke-width="2.4" d="M10 52 q 14 -9 28 0 t 28 0 t 28 0 t 28 0 t 28 0"/>
+      <path stroke-width="2.4" d="M10 70 q 14 -9 28 0 t 28 0 t 28 0 t 28 0 t 28 0"/>
+      <path stroke-width="2.4" d="M10 88 q 14 -9 28 0 t 28 0 t 28 0 t 28 0 t 28 0"/>
+      <path stroke-width="2.4" d="M10 106 q 14 -9 28 0 t 28 0 t 28 0 t 28 0 t 28 0"/>
+      <path id="arc" d="M 157 75 A 53 53 0 1 1 263 75 A 53 53 0 1 1 157 75" stroke="none"/>
+    </g>
+    <text font-family="IBM Plex Mono" font-size="11" letter-spacing="1.5" fill="#c32f27"><textPath href="#arc">PACKET LAB · PAR AVION · IN FLIGHT ·</textPath></text>
+    <text x="210" y="80" text-anchor="middle" font-family="IBM Plex Mono" font-size="13" font-weight="500" fill="#c32f27">AIRMAIL</text>
+  </svg>
+
+  <div class="stamp"><div>
+    <svg width="86" height="56" viewBox="-2 0 26 14" aria-hidden="true">
+      <path fill="#1d1b18" d="M1 8.4 L-1.6 6.6 L-1.2 10.2 Z M1 8.4 C4.5 6.6 9.5 6 14.4 6.9 C16.2 5.2 19.2 5.1 20.4 6.8 L23.4 7.4 L20.6 8.4 C20 10.6 17 12.3 12 12.3 C7.6 12.3 4.2 11 1 8.4 Z"/>
+      <path fill="#1d1b18" d="M7.5 8 C9.6 3.4 12.8 1 16.2 1.2 C14.6 3.6 13.6 6.2 12.6 8.6 Z"/>
+    </svg>
+  </div><span class="mono">Packet Lab</span></div>
+
+  <h1>A letter is on its way<br><em>by pigeon.</em></h1>
+  <p class="sub mono">Open to watch it arrive</p>
+
+  <svg class="flight" viewBox="0 0 1008 70" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M10 52 C 260 10, 420 64, 600 34 S 900 14, 1000 30" fill="none" stroke="#1f3f8a" stroke-width="1.6" stroke-dasharray="5 7"/>
+  </svg>
+  <svg class="bird" width="58" height="34" viewBox="-2 0 26 14" aria-hidden="true">
+    <path fill="#1d1b18" d="M1 8.4 L-1.6 6.6 L-1.2 10.2 Z M1 8.4 C4.5 6.6 9.5 6 14.4 6.9 C16.2 5.2 19.2 5.1 20.4 6.8 L23.4 7.4 L20.6 8.4 C20 10.6 17 12.3 12 12.3 C7.6 12.3 4.2 11 1 8.4 Z"/>
+    <path fill="#1d1b18" d="M7.5 8 C9.6 3.4 12.8 1 16.2 1.2 C14.6 3.6 13.6 6.2 12.6 8.6 Z"/>
+    <rect x="8.4" y="12.6" width="7.4" height="5.2" fill="#f3ead8" stroke="#1d1b18" stroke-width=".7"/>
+  </svg>
+</div></div>
+</body>
+</html>

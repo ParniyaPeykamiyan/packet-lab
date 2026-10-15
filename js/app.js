@@ -168,12 +168,20 @@ function dispatch(letter, text, url) {
     later(() => {
       grid.hidden = true;
       title.innerHTML = `In flight <em>to ${html(to)}.</em>`;
-      showLink(letter, url);
+      showLink(letter, url, flight);
     }, quick ? 0 : 1500 + items.length * 90);
   }, Math.max(wait, quick ? 0 : 900 + n * 130));
 }
 
-function showLink(letter, url) {
+/** The share message, written like a pigeon-post notification. */
+function shareText(letter, flight) {
+  const left = letter.ts + flight.total * 1000 - Date.now();
+  if (left <= 0) return `🕊️ A pigeon has delivered a letter to you from ${letter.from}. Open to read it:`;
+  const min = Math.max(1, Math.ceil(left / 60000));
+  return `🕊️ A pigeon is carrying a letter to you from ${letter.from}. It lands in about ${min} ${min === 1 ? "minute" : "minutes"}. Open to watch it arrive:`;
+}
+
+function showLink(letter, url, flight) {
   $("linkBox").hidden = false;
   const out = $("linkOut");
   out.value = url;
@@ -196,7 +204,7 @@ function showLink(letter, url) {
   share.hidden = !navigator.share;
   share.onclick = () => navigator.share({
     title: "A letter by pigeon",
-    text: `${letter.from} sent you a letter by pigeon.`,
+    text: shareText(letter, flight),
     url,
   }).catch(() => {});
 }
